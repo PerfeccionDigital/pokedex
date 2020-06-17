@@ -3,10 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Pokedex</title>
 </head>
-<script  src="/static/js/app.js"></script>
+<script type="module" src="static/js/app.js"></script>
+<link rel="stylesheet" href="static/css/style.css">
 <body>
+  <header class="header">
+    <div class="row">
+      <h1 id="titleHeader" class="header__title">Pokédex</h1>
+      <div class="search">
+        <input class="search__input" type="text" placeholder="Buscar Pókemon">
+      </div>
+    </div>
+
+  </header>
+
+  <div style="position: fixed;">
+    <input id="page" type="hidden" >
+  </div>
+
+  <section id="listPokemon" class="row pokemons">
+  </section>
+
 
 </body>
 </html>
