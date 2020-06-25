@@ -47,6 +47,14 @@ body{
   margin: 0;
   margin-bottom: 20px;
 }
+.pokemon__image img{
+  width: 215px;
+  height: 215px;
+  /* background-image: url(../img/loading2.gif); */
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .pokemon__numer{
   font-size: 14px;
   color: gray;
@@ -57,6 +65,7 @@ body{
 .pokemon__name h5{
   font-size: 30px;
   margin: 0;
+  text-transform: capitalize;
 }
 
 @media screen and (max-width: 480px) {

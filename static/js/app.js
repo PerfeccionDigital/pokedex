@@ -1,42 +1,39 @@
-import API from './api.js'
+// import API from './api.js'
 import Pokemon from './pokemon.js'
-const api = new API()
+
+
+// https://codepen.io/hnqv/pen/gmpxrY
+// const api = new API()
 const objPokemon = new Pokemon()
+const pokemons = []
+const items = 4
 
 
-async function fpage(page){
-  const limit = 20
-  const offset = parseInt(page) * limit;
-  const listPokemon = await api.getPokemos(offset, limit)
-
-  for(const index in listPokemon.results){
-    let pokemon = listPokemon.results[index]
-    let pokemonUrl = pokemon.url
-
-    let res = pokemonUrl.split("/");
-    let pos = res.indexOf('pokemon');
-    let indice = res[pos+1];
+const $listPokemon = document.querySelector('#listPokemon')
+// const $searchInput = document.querySelector('.search__input');
+// const $suggestions = document.querySelector('.suggestions');
 
 
-    let num = objPokemon.padLeft(indice, 3)
 
-    const markup = objPokemon.renderPokemon(pokemon, num)
-    let container = document.createElement("div");
-    container.innerHTML = markup
-    document.querySelector('#listPokemon').appendChild(container)
-  }
-  document.getElementById("page").value = page
-
+function renderDocument(){
+  objPokemon.loadPokemons().then(function(pokemons){
+    pokemons.forEach(element => {
+      const markup = objPokemon.renderPokemon(element)
+      const container = document.createElement("div");
+      container.innerHTML = markup
+      $listPokemon.appendChild(container)
+    });
+  })
 }
+
+
 
 function iniApp(){
-  fpage(0)
+  // $searchInput.addEventListener('change', displayMatches);
+  // $searchInput.addEventListener('keyup', displayMatches);
+  renderDocument()
+  // localStorage.clear();
+
 }
 
-window.onscroll = function (e) {
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    const page = parseInt(document.getElementById("page").value) + 1;
-    fpage(page)
-  }
-}
 iniApp()
